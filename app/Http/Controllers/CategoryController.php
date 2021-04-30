@@ -25,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        // TODO: return category create view
     }
 
     /**
@@ -36,7 +36,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // TODO: validate the request
+        // TODO: make new category using create method
+        // TODO: return reidrect to categories index
     }
 
     /**
@@ -58,7 +60,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        // TODO: return edit view with $category var
     }
 
     /**
@@ -70,7 +72,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        // TODO: validate the request
+        // TODO: update the category using update method
+        // TODO: return reidrect to categories index
     }
 
     /**
@@ -81,6 +85,6 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        // TODO: look for this
     }
 }
