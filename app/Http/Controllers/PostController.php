@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function create () {
-        return view('post.create');
+    public function create ()
+    {
+        $categories = Category::all();
+        return view('post.create', ['categories' => $categories]);
     }
 
     public function show ($id) {
@@ -22,13 +25,17 @@ class PostController extends Controller
             'title'             => 'required|min:4|max:255',
             'featured_image'    => 'required|url',
             'content'           => 'required|min:4',
+            'category_id'       => 'required|numeric|exists:categories,id'
         ]);
 
         $post = new Post();
         $post->title = $request->title;
         $post->featured_image = $request->featured_image;
         $post->content = $request->content;
+        $post->category_id = $request->category_id;
         $post->save();
+
+        // $post = Post::create($request->all());
 
         return redirect("/posts/{$post->id}");
     }

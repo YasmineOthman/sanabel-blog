@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -27,3 +28,5 @@ Route::get('/posts/create', [PostController::class, 'create']);
 Route::get('/posts/{id}', [PostController::class, 'show']);
 Route::get('/posts/{id}/edit', [PostController::class, 'edit']);
 Route::put('/posts/{id}', [PostController::class, 'update']);
+
+Route::resource('categories', CategoryController::class);

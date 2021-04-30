@@ -6,7 +6,7 @@
           {{ $post->title }}
         </p>
         <p class="subtitle">
-          Fathi, is the author
+          Fathi, is the author, Category: {{ $post->category->name }}
         </p>
       </div>
     </div>

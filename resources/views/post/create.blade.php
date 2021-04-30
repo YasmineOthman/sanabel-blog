@@ -15,6 +15,23 @@
         </div>
 
         <div class="field">
+          <label class="label">Category</label>
+
+          <div class="control">
+            <div class="select @error('category_id')is-danger @enderror">
+              <select name="category_id" value="{{ old('category_id') }}">
+                @foreach ($categories as $category)
+                  <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+          @error('category_id')
+            <p class="help is-danger">{{ $message }}</p>
+          @enderror
+        </div>
+
+        <div class="field">
           <label class="label">Featured Image (URL)</label>
           <div class="control">
             <input class="input @error('featured_image')is-danger @enderror" name="featured_image" type="text" value="{{ old('featured_image') }}" placeholder="http://hi.com/pic.jpg">
