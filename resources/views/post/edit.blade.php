@@ -8,22 +8,48 @@
         <div class="field">
           <label class="label">Title</label>
           <div class="control">
-            <input class="input" name="title" type="text" placeholder="Post Title" value="{{ $post->title }}">
+            <input class="input @error('title')is-danger @enderror" name="Post Title" type="text" value="{{ old('title') }}" placeholder="Post Title">
           </div>
+          @error('title')
+          <p class="help is-danger">{{ $message }}</p>
+          @enderror
+        </div>
+
+        <div class="field">
+          <label class="label">Category</label>
+
+          <div class="control">
+            <div class="select @error('category_id')is-danger @enderror">
+              <select name="category_id" value="{{ old('category_id') }}">
+                @foreach ($categories as $category)
+                  <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+          @error('category_id')
+            <p class="help is-danger">{{ $message }}</p>
+          @enderror
         </div>
 
         <div class="field">
           <label class="label">Featured Image (URL)</label>
           <div class="control">
-            <input class="input" name="featured_image" type="text" placeholder="http://hi.com/pic.jpg" value="{{ $post->featured_image }}">
+            <input class="input @error('featured_image')is-danger @enderror" name="featured_image" type="text" value="{{ old('featured_image') }}" placeholder="http://hi.com/pic.jpg">
           </div>
+          @error('featured_image')
+          <p class="help is-danger">{{ $message }}</p>
+          @enderror
         </div>
 
         <div class="field">
           <label class="label">Content</label>
           <div class="control">
-            <textarea class="textarea" name="content" placeholder="Post Content">{{ $post->content }}</textarea>
+            <textarea class="textarea @error('content')is-danger @enderror" name="content" placeholder="Post Content">{{ old('content') }}</textarea>
           </div>
+          @error('content')
+            <p class="help is-danger">{{ $message }}</p>
+          @enderror
         </div>
 
         <div class="field is-grouped">
