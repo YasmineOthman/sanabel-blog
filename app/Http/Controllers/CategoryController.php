@@ -26,6 +26,8 @@ class CategoryController extends Controller
     public function create()
     {
         // TODO: return category create view
+        return view('category.create');
+
     }
 
     /**
@@ -39,6 +41,15 @@ class CategoryController extends Controller
         // TODO: validate the request
         // TODO: make new category using create method
         // TODO: return reidrect to categories index
+            $request->validate([
+            'name'             => 'required|min:4|max:255',
+            'icon'             => 'required|url'
+        ]);
+        $category = new category();
+        $category->name = $request->name;
+        $category->icon = $request->icon;
+        $category->save();
+        return redirect("/categories/{$category->id}");
     }
 
     /**
@@ -61,6 +72,11 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         // TODO: return edit view with $category var
+         $categories = Category::all();
+
+        //   $categories = Category::findOrFail($id);
+
+        return view('category.edit',  ['categories' => $categories]);
     }
 
     /**
