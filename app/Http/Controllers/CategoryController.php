@@ -73,8 +73,17 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         // TODO: validate the request
+        $request->validate([
+            'name'             => 'required|min:4|max:255',
+            'icon'    => 'required|url',
+        ]);
         // TODO: update the category using update method
+        $category = Post::findOrFail($id);
         // TODO: return reidrect to categories index
+        $post->title = $request->title;
+        $post->featured_image = $request->featured_image;
+        $post->content = $request->content;
+
     }
 
     /**
