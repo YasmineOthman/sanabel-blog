@@ -37,7 +37,7 @@ class PostController extends Controller
 
         // $post = Post::create($request->all());
 
-        return redirect("/posts/{$post->id}");
+        return redirect()->route('posts.show', $post);
     }
 
     public function edit($id)

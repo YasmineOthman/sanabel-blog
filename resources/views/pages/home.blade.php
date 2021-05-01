@@ -20,7 +20,7 @@
       <div class="columns">
         @foreach ($posts as $post)
         <div class="column">
-          <a href="/posts/{{ $post->id }}">
+          <a href="{{ route('posts.show', $post) }}">
             <div class="card">
               <div class="card-image">
                 <figure class="image is-4by3">
