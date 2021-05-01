@@ -12,7 +12,7 @@
       </div>
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item"  href="/">
+          <a class="navbar-item {{ Route::currentRouteName() == 'home' ? 'is-active' : '' }}">
             Home
           </a>
           <a class="navbar-item"  href="/posts/create">
