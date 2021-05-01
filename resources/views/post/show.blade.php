@@ -7,6 +7,9 @@
         </p>
         <p class="subtitle">
           Fathi, is the author, Category: {{ $post->category->name }}
+          @foreach ($post->tags as $tag)
+            <span class="tag is-warning">{{ $tag->name }}</span>
+          @endforeach
         </p>
       </div>
     </div>

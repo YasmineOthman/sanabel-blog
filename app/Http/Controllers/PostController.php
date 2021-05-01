@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -11,7 +12,8 @@ class PostController extends Controller
     public function create ()
     {
         $categories = Category::all();
-        return view('post.create', ['categories' => $categories]);
+        $tags = Tag::all();
+        return view('post.create', ['categories' => $categories, 'tags' => $tags]);
     }
 
     public function show ($id) {
@@ -25,7 +27,8 @@ class PostController extends Controller
             'title'             => 'required|min:4|max:255',
             'featured_image'    => 'required|url',
             'content'           => 'required|min:4',
-            'category_id'       => 'required|numeric|exists:categories,id'
+            'category_id'       => 'required|numeric|exists:categories,id',
+            'tags'              => 'array',
         ]);
 
         $post = new Post();
@@ -34,6 +37,8 @@ class PostController extends Controller
         $post->content = $request->content;
         $post->category_id = $request->category_id;
         $post->save();
+
+        $post->tags()->sync($request->tags);
 
         // $post = Post::create($request->all());
 

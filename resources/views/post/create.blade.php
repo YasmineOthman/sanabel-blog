@@ -32,6 +32,23 @@
         </div>
 
         <div class="field">
+          <label class="label">Tags</label>
+
+          <div class="control">
+            <div class="select is-multiple @error('tags')is-danger @enderror">
+              <select name="tags[]" value="{{ old('tags') }}" multiple>
+                @foreach ($tags as $tag)
+                  <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+          @error('tags')
+            <p class="help is-danger">{{ $message }}</p>
+          @enderror
+        </div>
+
+        <div class="field">
           <label class="label">Featured Image (URL)</label>
           <div class="control">
             <input class="input @error('featured_image')is-danger @enderror" name="featured_image" type="text" value="{{ old('featured_image') }}" placeholder="http://hi.com/pic.jpg">
