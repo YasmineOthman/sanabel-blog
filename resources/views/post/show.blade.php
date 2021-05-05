@@ -1,9 +1,4 @@
 <x-layouts.app>
-  <div class="navbar-end">
-  <a class="navbar-item" href="/posts/{{ $post->id }}/edit">
-    Edit
-  </a>
-  </div>
   <section class="hero is-large is-primary">
     <div class="container">
       <div class="hero-body has-text-centered">
