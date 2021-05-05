@@ -2,7 +2,7 @@
   <section class="section">
     <div class="container">
       <div class="title is-2">Create New Post</div>
-      <form action="/posts" method="POST">
+      <form action="{{ route('posts.store') }}" method="POST">
         @csrf
         <div class="field">
           <label class="label">Title</label>
@@ -27,6 +27,23 @@
             </div>
           </div>
           @error('category_id')
+            <p class="help is-danger">{{ $message }}</p>
+          @enderror
+        </div>
+
+        <div class="field">
+          <label class="label">Tags</label>
+
+          <div class="control">
+            <div class="select is-multiple @error('tags')is-danger @enderror">
+              <select name="tags[]" value="{{ old('tags') }}" multiple>
+                @foreach ($tags as $tag)
+                  <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+          @error('tags')
             <p class="help is-danger">{{ $message }}</p>
           @enderror
         </div>

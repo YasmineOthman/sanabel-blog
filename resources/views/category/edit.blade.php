@@ -1,16 +1,16 @@
 <x-layouts.app>
   <section class="section">
     <div class="container">
-      <div class="title is-2">Edit {{ $post->title }}</div>
-      <form action="/posts/{{ $post->id }}" method="POST">
+      <div class="title is-2">Edit {{ $category->name }}</div>
+      <form action="/categories/{{ $categories->id }}" method="POST">
         @csrf
         <input type="hidden" name="_method" value="PUT">
         <div class="field">
-          <label class="label">Title</label>
+          <label class="label">Name</label>
           <div class="control">
-            <input class="input @error('title')is-danger @enderror" name="Post Title" type="text" value="{{ old('title') }}" placeholder="Post Title">
+            <input class="input @error('name')is-danger @enderror" name="Category Name" type="text" value="{{ old('title') }}" placeholder="Post Title">
           </div>
-          @error('title')
+          @error('name')
           <p class="help is-danger">{{ $message }}</p>
           @enderror
         </div>

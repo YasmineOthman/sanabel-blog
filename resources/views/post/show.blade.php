@@ -1,12 +1,20 @@
 <x-layouts.app>
+  <div class="navbar-end">
+  <a class="navbar-item" href="/posts/{{ $post->id }}/edit">
+    Edit
+  </a>
+  </div>
   <section class="hero is-large is-primary">
     <div class="container">
       <div class="hero-body has-text-centered">
         <p class="title">
-          {{ $post->title }}
+          {{ $post->title }} <a href="{{ route('posts.edit', $post) }}">edit</a>
         </p>
         <p class="subtitle">
           Fathi, is the author, Category: {{ $post->category->name }}
+          @foreach ($post->tags as $tag)
+            <span class="tag is-warning">{{ $tag->name }}</span>
+          @endforeach
         </p>
       </div>
     </div>

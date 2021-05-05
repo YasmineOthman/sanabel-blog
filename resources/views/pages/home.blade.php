@@ -17,11 +17,13 @@
         Our Latest Posts
       </div>
       {{-- row --}}
-      <div class="columns">
+      <div class="columns is-multiline is-mobile">
         @foreach ($posts as $post)
-        <div class="column">
+        <div class="column is-one-third">
           <a href="/posts/{{ $post->id }}">
-            <div class="card">
+            <div class="card" style="display: flex;
+            flex-direction: column;
+            height: 100%;">
               <div class="card-image">
                 <figure class="image is-4by3">
                   <img src="{{ $post->featured_image }}" alt="Placeholder image">
