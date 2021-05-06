@@ -4,15 +4,12 @@
       <div class="title is-2">Create New Category</div>
       <form action="{{ route('categories.store') }}" method="POST">
         @csrf
-
-
-
             <div class="field">
               <label class="label">Category Name</label>
               <div class="control">
-                <input class="input @error('category_name')is-danger @enderror" name="category_name" type="text" value="{{ old('category_name') }}" placeholder="name">
+                <input class="input @error('name')is-danger @enderror" name="name" type="text" value="{{ old('name') }}" placeholder="name">
               </div>
-              @error('category_name')
+              @error('name')
                 <p class="help is-danger">{{ $message }}</p>
               @enderror
             </div>

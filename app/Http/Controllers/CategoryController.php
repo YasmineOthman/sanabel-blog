@@ -43,7 +43,7 @@ class CategoryController extends Controller
         // TODO: return reidrect to categories index
             $request->validate([
             'name'             => 'required|min:4|max:255',
-            'icon'             => 'required|url'
+            'icon'             => 'required|url',
         ]);
         $category = new Category();
         $category->name = $request->name;
@@ -87,7 +87,7 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update($id, Request $request)
+    public function update(Category $category, Request $request)
     {
         // TODO: validate the request
         $request->validate([
@@ -95,7 +95,7 @@ class CategoryController extends Controller
             'icon'    => 'required|url',
         ]);
         // TODO: update the category using update method
-        $category = Category::findOrFail($id);
+        // $category = Category::findOrFail($id);
         // TODO: return reidrect to categories index
         $category->name = $request->name;
         $category->icon = $request->icon;

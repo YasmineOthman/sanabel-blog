@@ -6,7 +6,7 @@
         @csrf
         <input type="hidden" name="_method" value="PUT">
         <div class="field">
-          <label class="label">Name</label>
+          <label class="label">name</label>
           <div class="control">
             <input class="input @error('name')is-danger @enderror" name="name" type="text" value="{{ old('name') }}" placeholder="Category Name">
           </div>
@@ -18,9 +18,9 @@
         <div class="field">
           <label class="label">Featured Image (URL)</label>
           <div class="control">
-            <input class="input @error('featured_image')is-danger @enderror" name="featured_image" type="text" value="{{ old('featured_image') }}" placeholder="http://hi.com/pic.jpg">
+            <input class="input @error('icon')is-danger @enderror" name="icon" type="text" value="{{ old('icon') }}" placeholder="http://hi.com/pic.jpg">
           </div>
-          @error('featured_image')
+          @error('icon')
           <p class="help is-danger">{{ $message }}</p>
           @enderror
         </div>
