@@ -21,8 +21,8 @@
           <a class="navbar-item"  href="/categories/create">
             Create Catygory
           </a>
-          <a class="navbar-item"  href="/tag/create">
-            Tag
+          <a class="navbar-item"  href="/tags/create">
+            Create Tag
           </a>
         </div>
         <div class="navbar-end">

@@ -26,7 +26,7 @@
 
         <div class="field is-grouped">
           <div class="control">
-            <button class="button is-link">Create new Slug</button>
+            <button class="button is-link">Create new Tag</button>
           </div>
           <div class="control">
             <button class="button is-link is-light">Cancel</button>

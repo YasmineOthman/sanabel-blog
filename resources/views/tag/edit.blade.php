@@ -27,7 +27,7 @@
 
         <div class="field is-grouped">
           <div class="control">
-            <button class="button is-link">Update Category</button>
+            <button class="button is-link">Update Tag</button>
           </div>
           <div class="control">
             <button class="button is-link is-light">Cancel</button>
