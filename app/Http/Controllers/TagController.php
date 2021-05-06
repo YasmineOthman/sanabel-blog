@@ -14,9 +14,9 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        $tags = Tag::all();
+        return view('tag.index', ['tag' => $tags]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -24,7 +24,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        return view('tag.create');
     }
 
     /**
@@ -35,7 +35,15 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'             => 'required|min:4|max:255',
+            'slug'             => 'required|min:4|max:255',
+        ]);
+        $tag = new Tag();
+        $tag->name = $request->name;
+        $tag->slug = $request->slug;
+        $tag->save();
+        return redirect()->route('tags.index', $tag);
     }
 
     /**
@@ -46,7 +54,7 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        //
+        return view('tag.show', ['tag' => $tag]);
     }
 
     /**
@@ -57,7 +65,7 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        //
+        return view('tag.edit',  ['tag' => $tag]);
     }
 
     /**
@@ -69,7 +77,15 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
-        //
+        $request->validate([
+            'name'    => 'required|min:4|max:255',
+            'slug'    => 'required|min:4|max:255',
+        ]);
+        $category->name = $request->name;
+        $category->slug = $request->slug;
+        $category->save();
+        return redirect()->route('tags.index', $tag);
+
     }
 
     /**
