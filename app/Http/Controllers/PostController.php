@@ -48,10 +48,11 @@ class PostController extends Controller
     public function edit($id)
     {
         $categories = Category::all();
+        $tags = Tag::all();
 
         $post = Post::findOrFail($id);
 
-        return view('post.edit', ['post' => $post] , ['categories' => $categories]);
+        return view('post.edit', ['post' => $post] ,  ['categories' => $categories, 'tags' => $tags]);
     }
 
     public function update($id, Request $request)
@@ -60,12 +61,17 @@ class PostController extends Controller
             'title'             => 'required|min:4|max:255',
             'featured_image'    => 'required|url',
             'content'           => 'required|min:4',
+            'category_id'       => 'required|numeric|exists:categories,id',
+            'tags'              => 'array',
         ]);
         $post = Post::findOrFail($id);
         $post->title = $request->title;
         $post->featured_image = $request->featured_image;
         $post->content = $request->content;
+        $post->category_id = $request->category_id;
         $post->save();
+        $post->tags()->sync($request->tags);
+
 
         return redirect("/posts/{$post->id}");
     }
