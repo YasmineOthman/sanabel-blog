@@ -47,13 +47,20 @@ class PostController extends Controller
 
     public function edit($id)
     {
+        $categories = Category::all();
+
         $post = Post::findOrFail($id);
 
-        return view('post.edit', ['post' => $post]);
+        return view('post.edit', ['post' => $post] , ['categories' => $categories]);
     }
 
     public function update($id, Request $request)
     {
+        $request->validate([
+            'title'             => 'required|min:4|max:255',
+            'featured_image'    => 'required|url',
+            'content'           => 'required|min:4',
+        ]);
         $post = Post::findOrFail($id);
         $post->title = $request->title;
         $post->featured_image = $request->featured_image;
