@@ -2,25 +2,20 @@
   <section class="section">
     <div class="container">
       <div class="title is-2">Create New Category</div>
-      <form action="/categories" method="POST">
+      <form action="{{ route('categories.store') }}" method="POST">
         @csrf
 
-        <div class="field">
-          <label class="label">Category</label>
 
-          <div class="control">
-            <div class="select @error('category_id')is-danger @enderror">
-              <select name="category_id" value="{{ old('category_id') }}">
-                @foreach ($categories as $category)
-                  <option value="{{ $category->id }}">{{ $category->name }}</option>
-                @endforeach
-              </select>
+
+            <div class="field">
+              <label class="label">Category Name</label>
+              <div class="control">
+                <input class="input @error('category_name')is-danger @enderror" name="category_name" type="text" value="{{ old('category_name') }}" placeholder="name">
+              </div>
+              @error('category_name')
+                <p class="help is-danger">{{ $message }}</p>
+              @enderror
             </div>
-          </div>
-          @error('category_id')
-            <p class="help is-danger">{{ $message }}</p>
-          @enderror
-        </div>
 
         <div class="field">
           <label class="label">Category Icon</label>

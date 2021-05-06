@@ -12,11 +12,17 @@
       </div>
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item {{ Route::currentRouteName() == 'home' ? 'is-active' : '' }}">
+          <a class="navbar-item {{ Route::currentRouteName() == 'home' ? 'is-active' : '' }}"  href="/">
             Home
           </a>
           <a class="navbar-item"  href="/posts/create">
-            Create
+            Create Post
+          </a>
+          <a class="navbar-item"  href="/categories/create">
+            Create Catygory
+          </a>
+          <a class="navbar-item"  href="/tag/create">
+            Tag
           </a>
         </div>
         <div class="navbar-end">

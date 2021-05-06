@@ -12,10 +12,10 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Category $category)
     {
         $categories = Category::all();
-        return view('category.index', ['categories' => $categories]);
+        return view('category.index', ['category' => $category]);
     }
 
     /**
@@ -45,11 +45,12 @@ class CategoryController extends Controller
             'name'             => 'required|min:4|max:255',
             'icon'             => 'required|url'
         ]);
-        $category = new category();
+        $category = new Category();
         $category->name = $request->name;
         $category->icon = $request->icon;
         $category->save();
-        return redirect("/categories/{$category->id}");
+        // return redirect("/categories/{$category->id}");
+        return redirect()->route('categories.index', $category);
     }
 
     /**
@@ -72,11 +73,11 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         // TODO: return edit view with $category var
-         $categories = Category::all();
+        //  $categories = Category::all();
 
-        //   $categories = Category::findOrFail($id);
+        //  $categories = Category::findOrFail($id);
 
-        return view('category.edit',  ['categories' => $categories]);
+        return view('category.edit',  ['category' => $category]);
     }
 
     /**
@@ -86,19 +87,21 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update($id, Request $request)
     {
         // TODO: validate the request
         $request->validate([
-            'name'             => 'required|min:4|max:255',
+            'name'    => 'required|min:4|max:255',
             'icon'    => 'required|url',
         ]);
         // TODO: update the category using update method
-        $category = Post::findOrFail($id);
+        $category = Category::findOrFail($id);
         // TODO: return reidrect to categories index
-        $post->title = $request->title;
-        $post->featured_image = $request->featured_image;
-        $post->content = $request->content;
+        $category->name = $request->name;
+        $category->icon = $request->icon;
+        $category->save();
+        return redirect("/categories/{$category->id}");
+
 
     }
 
