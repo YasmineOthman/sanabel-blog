@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TagController;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
@@ -31,6 +32,4 @@ Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edi
 Route::put('/posts/{id}', [PostController::class, 'update'])->name('posts.update');
 
 Route::resource('categories', CategoryController::class);
-Route::get('/tags/{tag}', function (Tag $tag) {
-    return $tag;
-});
+Route::resource('tags', TagController::class);

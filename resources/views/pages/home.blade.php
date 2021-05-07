@@ -1,7 +1,7 @@
 <x-layouts.app>
   <section class="hero is-large is-primary">
     <div class="container">
-      <div class="hero-body has-text-centered">
+      <div class="hero-body has-text-centered" style="height: 50%;">
         <p class="title">
           Sanabel Blog
         </p>
@@ -40,7 +40,12 @@
                   </div>
                 </div>
                 <div class="content">
-                  {{ $post->content }}
+                  {{-- {{ $post->content }} --}}
+                  {{ Str::limit($post->content, 80) }} ...
+                  <br>
+                  <a href="{{ route('posts.show', $post) }}">
+                    read more
+                  </a>
                   <br>
                   <time datetime="2016-1-1">{{ $post->created_at }}</time>
                 </div>
