@@ -1,9 +1,9 @@
 <x-layouts.app>
-  <section class="hero is-large is-primary">
+  <section class="hero is-danger is-medium">
     <div class="container">
       <div class="hero-body has-text-centered">
         <p class="title">
-          {{ $post->title }} <a href="{{ route('posts.edit', $post) }}">edit</a>
+          {{ $post->title }} <button class="button" class="button is-success"><a href="{{ route('posts.edit', $post) }}"><b>edit</b></a></button>
         </p>
         <p class="subtitle">
           Fathi, is the author, Category: {{ $post->category->name }}
@@ -15,8 +15,8 @@
     </div>
   </section>
   <section class="section">
-    <div class="container">
-      <figure class="image is-128x128">
+    <div class="container is-max-desktop">
+      <figure class="image is-228x228 is-centered " >
         <img src="{{ $post->featured_image }}">
       </figure>
       <p class="content">

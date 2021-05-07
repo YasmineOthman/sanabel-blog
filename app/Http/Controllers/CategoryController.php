@@ -12,7 +12,7 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Category $category)
     {
         $categories = Category::all();
         return view('category.index', ['categories' => $categories]);
@@ -25,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        // TODO: return category create view
+        return view('category.create');
     }
 
     /**
@@ -36,9 +36,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        // TODO: validate the request
-        // TODO: make new category using create method
-        // TODO: return reidrect to categories index
+            $request->validate([
+            'name'  => 'required|min:4|max:255',
+            'icon'  => 'required|url',
+            'slug'  => 'required|min:4|string'
+        ]);
+
+        Category::create($request->all());
+
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -60,7 +66,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        // TODO: return edit view with $category var
+        return view('category.edit',  ['category' => $category]);
     }
 
     /**
@@ -70,11 +76,17 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Category $category, Request $request)
     {
-        // TODO: validate the request
-        // TODO: update the category using update method
-        // TODO: return reidrect to categories index
+        $request->validate([
+            'name'  => 'required|min:4|max:255',
+            'icon'  => 'required|url',
+            'slug'  => 'required|min:4|string'
+        ]);
+
+        $category->update($request->all());
+
+        return redirect()->route('categories.show', $category);
     }
 
     /**
@@ -85,6 +97,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        // TODO: look for this
+        $category->delete();
+
+        return redirect()->route('categories.index');
     }
 }

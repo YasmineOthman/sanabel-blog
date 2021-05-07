@@ -12,11 +12,12 @@ class TagController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Tag $tag)
     {
-        //
-    }
+        $tags = Tag::all();
 
+        return view('tag.index', ['tags' => $tags]);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -24,7 +25,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        return view('tag.create');
     }
 
     /**
@@ -35,7 +36,14 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'             => 'required|min:4|max:255',
+            'slug'             => 'required|min:4|max:255',
+        ]);
+
+        $tag = Tag::create($request->all());
+
+        return redirect()->route('tags.index');
     }
 
     /**
@@ -46,7 +54,7 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        //
+        return view('tag.show', ['tag' => $tag]);
     }
 
     /**
@@ -57,7 +65,7 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        //
+        return view('tag.edit',  ['tag' => $tag]);
     }
 
     /**
@@ -69,7 +77,14 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
-        //
+        $request->validate([
+            'name'    => 'required|min:4|max:255',
+            'slug'    => 'required|min:4|max:255',
+        ]);
+
+        $tag->update($request->all());
+
+        return redirect()->route('tags.index');
     }
 
     /**
@@ -80,6 +95,8 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+
+        return redirect()->route('tags.index');
     }
 }
