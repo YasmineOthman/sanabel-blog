@@ -16,7 +16,7 @@ class TagController extends Controller
     {
         $tags = Tag::all();
 
-        return view('tag.index', ['tag' => $tags]);
+        return view('tag.index', ['tags' => $tags]);
     }
     /**
      * Show the form for creating a new resource.
@@ -40,11 +40,10 @@ class TagController extends Controller
             'name'             => 'required|min:4|max:255',
             'slug'             => 'required|min:4|max:255',
         ]);
-        $tag = new Tag();
-        $tag->name = $request->name;
-        $tag->slug = $request->slug;
-        $tag->save();
-        return redirect()->route('tags.index', $tag);
+
+        $tag = Tag::create($request->all());
+
+        return redirect()->route('tags.index');
     }
 
     /**
@@ -82,11 +81,10 @@ class TagController extends Controller
             'name'    => 'required|min:4|max:255',
             'slug'    => 'required|min:4|max:255',
         ]);
-        $category->name = $request->name;
-        $category->slug = $request->slug;
-        $category->save();
-        return redirect()->route('tags.index', $tag);
 
+        $tag->update($request->all());
+
+        return redirect()->route('tags.index');
     }
 
     /**
@@ -97,6 +95,8 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+
+        return redirect()->route('tags.index');
     }
 }
