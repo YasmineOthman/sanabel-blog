@@ -35,7 +35,14 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'             => 'required|min:4|max:255',
+            'slug'             => 'required|min:4|max:255',
+        ]);
+
+        $tag = Tag::create($request->all());
+
+        return redirect()->route('tags.index')->with('success', 'The Tag was created successfully');
     }
 
     /**
