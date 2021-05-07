@@ -41,8 +41,11 @@
                 </div>
                 <div class="content">
                   {{-- {{ $post->content }} --}}
-                  {{ Str::limit($post->content, 80)}}
-                  {{-- <a href="{{ route('posts.show', $post) }}"> read more </a> --}}
+                  {{ Str::limit($post->content, 80) }} ...
+                  <br>
+                  <a href="{{ route('posts.show', $post) }}">
+                    read more
+                  </a>
                   <br>
                   <time datetime="2016-1-1">{{ $post->created_at }}</time>
                 </div>
