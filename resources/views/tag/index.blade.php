@@ -1,6 +1,4 @@
 <x-layouts.app>
-  tag INdex page
-  this is where you will see all tags
-
-
+  tag Index page
+  this is where you will see all tag
 </x-layouts.app>

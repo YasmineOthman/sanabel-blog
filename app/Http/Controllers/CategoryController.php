@@ -47,6 +47,7 @@ class CategoryController extends Controller
         ]);
         $category = new Category();
         $category->name = $request->name;
+        $category->slug = $request->slug;
         $category->icon = $request->icon;
         $category->save();
         // return redirect("/categories/{$category->id}");
@@ -98,6 +99,7 @@ class CategoryController extends Controller
         // $category = Category::findOrFail($id);
         // TODO: return reidrect to categories index
         $category->name = $request->name;
+        $category->slug = $request->slug;
         $category->icon = $request->icon;
         $category->save();
         return redirect("/categories/{$category->id}");

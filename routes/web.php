@@ -32,6 +32,9 @@ Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edi
 Route::put('/posts/{id}', [PostController::class, 'update'])->name('posts.update');
 
 Route::resource('categories', CategoryController::class);
+Route::get('/categories/{category}', function (Category $category) {
+    return $category;
+});
 Route::resource('tags', TagController::class);
 Route::get('/tags/{tag}', function (Tag $tag) {
     return $tag;

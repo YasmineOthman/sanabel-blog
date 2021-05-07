@@ -16,6 +16,16 @@
         </div>
 
         <div class="field">
+          <label class="label">slug</label>
+          <div class="control">
+            <input class="input @error('slug')is-danger @enderror" name="slug" type="text" value="{{ old('slug') }}" placeholder="Slug">
+          </div>
+          @error('slug')
+            <p class="help is-danger">{{ $message }}</p>
+          @enderror
+        </div>
+
+        <div class="field">
           <label class="label">Featured Image (URL)</label>
           <div class="control">
             <input class="input @error('icon')is-danger @enderror" name="icon" type="text" value="{{ old('icon') }}" placeholder="http://hi.com/pic.jpg">

@@ -33,6 +33,7 @@ class PostController extends Controller
 
         $post = new Post();
         $post->title = $request->title;
+        $post->slug = $request->slug;
         $post->featured_image = $request->featured_image;
         $post->content = $request->content;
         $post->category_id = $request->category_id;
@@ -66,6 +67,7 @@ class PostController extends Controller
         ]);
         $post = Post::findOrFail($id);
         $post->title = $request->title;
+        $post->slug = $request->slug;
         $post->featured_image = $request->featured_image;
         $post->content = $request->content;
         $post->category_id = $request->category_id;

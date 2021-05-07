@@ -16,6 +16,17 @@
         </div>
 
         <div class="field">
+          <label class="label">slug</label>
+          <div class="control">
+            <input class="input @error('slug')is-danger @enderror" name="slug" type="text" value="{{ old('slug') }}" placeholder="Post Slug">
+          </div>
+          @error('slug')
+            <p class="help is-danger">{{ $message }}</p>
+          @enderror
+        </div>
+
+
+        <div class="field">
           <label class="label">Category</label>
 
           <div class="control">
