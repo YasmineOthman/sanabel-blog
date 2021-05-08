@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function index()
+    {
+        $posts = Post::paginate(6);
+
+        return view('post.index', ['posts' => $posts]);
+    }
+
     public function create ()
     {
         $categories = Category::all();
@@ -76,5 +83,10 @@ class PostController extends Controller
 
 
         return redirect("/posts/{$post->id}");
+    }
+
+    public function destory($id)
+    {
+        # code...
     }
 }
