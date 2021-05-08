@@ -54,6 +54,11 @@
           </a>
         </div>
         @endforeach
+        <div class="column is-12">
+          <div class="buttons is-centered">
+            <a href="{{ route('posts.index') }}" class="button is-primary">See all posts</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
