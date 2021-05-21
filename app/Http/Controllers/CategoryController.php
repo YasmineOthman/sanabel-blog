@@ -52,6 +52,8 @@ class CategoryController extends Controller
             'slug'  => 'required|min:4|string'
         ]);
 
+        // TODO: Handel file upload for icon
+
         Category::create($request->all());
 
         return redirect()->route('categories.index');
@@ -93,6 +95,8 @@ class CategoryController extends Controller
             'icon'  => 'required|url',
             'slug'  => 'required|min:4|string'
         ]);
+
+        // TODO: Handel file upload for icon
 
         $category->update($request->all());
 
