@@ -22,8 +22,6 @@ Route::resource('posts', PostController::class);
 Route::resource('categories', CategoryController::class);
 Route::resource('tags', TagController::class);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::view('/dashboard', 'dashboard')->middleware('auth')->name('dashboard');
 
 require __DIR__.'/auth.php';

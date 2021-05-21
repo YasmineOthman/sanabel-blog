@@ -15,6 +15,16 @@
           <a class="navbar-item {{ Route::currentRouteName() == 'home' ? 'is-active' : '' }}"  href="/">
             Home
           </a>
+          <a class="navbar-item"  href="{{ route('posts.index') }}">
+            Posts
+          </a>
+          <a class="navbar-item"  href="{{ route('categories.index') }}">
+            Categories
+          </a>
+          <a class="navbar-item"  href="{{ route('tags.index') }}">
+            Tags
+          </a>
+          @auth
           <a class="navbar-item"  href="{{ route('posts.create') }}">
             Create Post
           </a>
@@ -24,6 +34,7 @@
           <a class="navbar-item"  href="{{ route('tags.create') }}">
             Create Tag
           </a>
+          @endauth
         </div>
         <div class="navbar-end">
           @guest

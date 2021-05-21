@@ -9,6 +9,16 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
     public function index()
     {
         $posts = Post::paginate(6);
