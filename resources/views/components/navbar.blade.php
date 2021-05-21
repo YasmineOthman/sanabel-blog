@@ -26,16 +26,29 @@
           </a>
         </div>
         <div class="navbar-end">
-          <div class="navbar-item">
-            <div class="buttons">
-              <a class="button is-primary">
-                <strong>Sign up</strong>
-              </a>
-              <a class="button is-light">
-                Log in
-              </a>
+          @guest
+            <div class="navbar-item">
+              <div class="buttons">
+                <a class="button is-primary" href="{{ route('register') }}">
+                  <strong>Sign up</strong>
+                </a>
+                <a class="button is-light" href="{{ route('login') }}">
+                  Log in
+                </a>
+              </div>
             </div>
-          </div>
+          @endguest
+          @auth
+            <div class="navbar-item">
+              Hi {{ Auth::user()->name }}!!
+            </div>
+            <div class="navbar-item">
+              <form action="{{ route('logout') }}" method="post">
+                @csrf
+                <input type="submit" class="button is-light" value="Logout">
+              </form>
+            </div>
+          @endauth
         </div>
       </div>
     </div>
