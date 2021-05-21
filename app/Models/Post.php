@@ -21,4 +21,18 @@ class Post extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
+
+    public function getFeaturedImageAttribute($value)
+    {
+        if (filter_var($value, FILTER_VALIDATE_URL)) {
+            return $value;
+        }
+
+        return asset("storage/{$value}");
+    }
+
+    // public function getImageAttribute()
+    // {
+    //     return asset("storage/{$this->featured_image}");
+    // }
 }
