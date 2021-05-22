@@ -19,9 +19,9 @@
       <figure class="image is-228x228 is-centered " >
         <img src="{{ $post->featured_image }}">
       </figure>
-      <p class="content">
-        {{ $post->content }}
-      </p>
+      <div class="content" id="content">
+        {!! $post->content !!}
+      </div>
     </div>
   </section>
   <section class="section">
