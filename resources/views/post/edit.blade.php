@@ -8,7 +8,7 @@
         <div class="field">
           <label class="label">Title</label>
           <div class="control">
-            <input class="input @error('title')is-danger @enderror" name="Post Title" type="text" value="{{ old('title') }}" placeholder="Post Title">
+            <input class="input @error('title')is-danger @enderror" name="title" type="text" value="{{ old('title', $post->title) }}" placeholder="Post Title">
           </div>
           @error('title')
           <p class="help is-danger">{{ $message }}</p>
@@ -18,7 +18,7 @@
         <div class="field">
           <label class="label">slug</label>
           <div class="control">
-            <input class="input @error('slug')is-danger @enderror" name="slug" type="text" value="{{ old('slug') }}" placeholder="Post Slug">
+            <input class="input @error('slug')is-danger @enderror" name="slug" type="text" value="{{ old('slug', $post->slug) }}" placeholder="Post Slug">
           </div>
           @error('slug')
             <p class="help is-danger">{{ $message }}</p>
@@ -31,7 +31,7 @@
 
           <div class="control">
             <div class="select @error('category_id')is-danger @enderror">
-              <select name="category_id" value="{{ old('category_id') }}">
+              <select name="category_id" value="{{ old('category_id', $post->category_id) }}">
                 @foreach ($categories as $category)
                   <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
@@ -48,7 +48,7 @@
 
           <div class="control">
             <div class="select is-multiple @error('tags')is-danger @enderror">
-              <select name="tags[]" value="{{ old('tags') }}" multiple>
+              <select name="tags[]" multiple>
                 @foreach ($tags as $tag)
                   <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                 @endforeach
@@ -63,7 +63,7 @@
         <div class="field">
           <label class="label">Featured Image (URL)</label>
           <div class="control">
-            <input class="input @error('featured_image')is-danger @enderror" name="featured_image" type="text" value="{{ old('featured_image') }}" placeholder="http://hi.com/pic.jpg">
+            <input class="input @error('featured_image')is-danger @enderror" name="featured_image" type="text" value="{{ old('featured_image', $post->featured_image) }}" placeholder="http://hi.com/pic.jpg">
           </div>
           @error('featured_image')
           <p class="help is-danger">{{ $message }}</p>
@@ -73,7 +73,7 @@
         <div class="field">
           <label class="label">Content</label>
           <div class="control">
-            <textarea class="textarea @error('content')is-danger @enderror" name="content" placeholder="Post Content">{{ old('content') }}</textarea>
+            <textarea class="textarea @error('content')is-danger @enderror" name="content" placeholder="Post Content">{{ old('content', $post->content) }}</textarea>
           </div>
           @error('content')
             <p class="help is-danger">{{ $message }}</p>

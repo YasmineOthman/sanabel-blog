@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
+use App\Models\User;
+use App\Notifications\PostPublished;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class PostController extends Controller
 {
@@ -102,6 +105,7 @@ class PostController extends Controller
         $post->save();
         $post->tags()->sync($request->tags);
 
+        Notification::send(User::all() , new PostPublished($post));
 
         return redirect("/posts/{$post->id}");
     }
