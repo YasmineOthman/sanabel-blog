@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 class TagController extends Controller
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -43,7 +53,7 @@ class TagController extends Controller
 
         $tag = Tag::create($request->all());
 
-        return redirect()->route('tags.index');
+        return redirect()->route('tags.index')->with('success', 'The Tag was created successfully');
     }
 
     /**

@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -41,6 +51,8 @@ class CategoryController extends Controller
             'icon'  => 'required|url',
             'slug'  => 'required|min:4|string'
         ]);
+
+        // TODO: Handel file upload for icon
 
         Category::create($request->all());
 
@@ -83,6 +95,8 @@ class CategoryController extends Controller
             'icon'  => 'required|url',
             'slug'  => 'required|min:4|string'
         ]);
+
+        // TODO: Handel file upload for icon
 
         $category->update($request->all());
 

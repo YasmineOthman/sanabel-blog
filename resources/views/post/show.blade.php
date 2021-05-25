@@ -3,7 +3,7 @@
     <div class="container">
       <div class="hero-body has-text-centered">
         <p class="title">
-          {{ $post->title }} <button class="button" class="button is-success"><a href="{{ route('posts.edit', $post) }}"><b>edit</b></a></button>
+          {{ $post->title }} @auth <button class="button" class="button is-success"><a href="{{ route('posts.edit', $post) }}"><b>edit</b></a></button> @endauth
         </p>
         <p class="subtitle">
           Fathi, is the author, Category: {{ $post->category->name }}
@@ -19,9 +19,9 @@
       <figure class="image is-228x228 is-centered " >
         <img src="{{ $post->featured_image }}">
       </figure>
-      <p class="content">
-        {{ $post->content }}
-      </p>
+      <div class="content" id="content">
+        {!! $post->content !!}
+      </div>
     </div>
   </section>
   <section class="section">

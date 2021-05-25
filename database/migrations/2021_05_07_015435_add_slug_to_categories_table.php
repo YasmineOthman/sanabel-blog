@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddSlugnToCategoryTable extends Migration
+class AddSlugToCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddSlugnToCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::table('category', function (Blueprint $table) {
-            $table->text('slug');
-
+        Schema::table('categories', function (Blueprint $table) {
+            $table->string('slug');
         });
     }
 
@@ -26,7 +25,7 @@ class AddSlugnToCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::table('category', function (Blueprint $table) {
+        Schema::table('categories', function (Blueprint $table) {
             $table->dropColumn('slug');
         });
     }

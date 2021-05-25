@@ -14,7 +14,7 @@
   <section class="section">
     <div class="container">
       <div class="title is-3 has-text-centered">
-        Our Latest Posts
+        Our Posts
       </div>
       {{-- row --}}
       <div class="columns is-multiline">
@@ -54,11 +54,7 @@
           </a>
         </div>
         @endforeach
-        <div class="column is-12">
-          <div class="buttons is-centered">
-            <a href="{{ route('posts.index') }}" class="button is-primary">See all posts</a>
-          </div>
-        </div>
+        <div class="column is-12">{{ $posts->links() }}</div>
       </div>
     </div>
   </section>
