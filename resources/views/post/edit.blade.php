@@ -1,4 +1,23 @@
 <x-layouts.app>
+
+ <x-slot name="styles">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+  </x-slot>
+  <x-slot name="scripts">
+    <!-- Include the Quill library -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+    <!-- Initialize Quill editor -->
+    <script>
+      var quill = new Quill('#editor', {
+        theme: 'snow'
+      })
+
+      quill.on('text-change', function(delta, source) {
+        document.getElementById('content').value = quill.root.innerHTML
+      })
+    </script>
+  </x-slot>
   <section class="section">
     <div class="container">
       <div class="title is-2">Edit {{ $post->title }}</div>
@@ -73,7 +92,9 @@
         <div class="field">
           <label class="label">Content</label>
           <div class="control">
-            <textarea class="textarea @error('content')is-danger @enderror" name="content" placeholder="Post Content">{{ old('content', $post->content) }}</textarea>
+            <div id="editor" class="textarea @error('content')is-danger @enderror" name="content" placeholder="Post Content">{!! old('content', $post->content) !!}</div>
+            <input type="hidden" name="content" id="content">
+          
           </div>
           @error('content')
             <p class="help is-danger">{{ $message }}</p>

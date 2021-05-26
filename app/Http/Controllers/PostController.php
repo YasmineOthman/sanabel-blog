@@ -20,12 +20,12 @@ class PostController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->except(['index', 'show']);
-        $this->middleware('verified')->only('create');
+        //$this->middleware('verified')->only('create');
     }
 
     public function index()
     {
-        $posts = Post::paginate(6);
+        $posts = Post::paginate(2);
 
         return view('post.index', ['posts' => $posts]);
     }
@@ -105,7 +105,7 @@ class PostController extends Controller
         $post->save();
         $post->tags()->sync($request->tags);
 
-        Notification::send(User::all() , new PostPublished($post));
+       // Notification::send(User::all() , new PostPublished($post));
 
         return redirect("/posts/{$post->id}");
     }

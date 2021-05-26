@@ -34,7 +34,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        Mail::to($request->user())->send(new Welcome);
+       // Mail::to($request->user())->send(new Welcome);
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
