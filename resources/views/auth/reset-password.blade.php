@@ -34,4 +34,4 @@
           </button>
       </div>
   </form>
-</x-auth-layout>
+</x-layouts.auth>

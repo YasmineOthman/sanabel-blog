@@ -1,4 +1,4 @@
-<x-layouts.app>
+<x-layouts.auth title="confirm-password">
   <div class="card">
     <p class="title is-4">{{ $title }}</p>
     <div class="card-content">
@@ -60,4 +60,4 @@
       </div>
     </div>
   </div>
-</x-guest-layout>
+</x-layouts.auth>
