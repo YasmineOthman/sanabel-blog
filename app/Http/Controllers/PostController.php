@@ -88,10 +88,11 @@ class PostController extends Controller
     {
         $request->validate([
             'title'             => 'required|min:4|max:255',
-            'featured_image'    => 'required|url',
             'content'           => 'required|min:4',
             'category_id'       => 'required|numeric|exists:categories,id',
             'tags'              => 'array',
+             'featured_image_url'   => 'required_without:featured_image_upload|url|nullable',
+            'featured_image_upload'  => 'required_without:featured_image_url|file|image',
         ]);
 
         // TODO: Handel file upload here
@@ -99,7 +100,15 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $post->title = $request->title;
         $post->slug = $request->slug;
-        $post->featured_image = $request->featured_image;
+       
+        if ($request->has('featured_image_upload')) {
+            $image = $request->featured_image_upload;
+            $path = $image->store('post-images', 'public');
+            $post->featured_image = $path;
+        } else {
+            $post->featured_image = $request->featured_image_url;
+        }
+
         $post->content = $request->content;
         $post->category_id = $request->category_id;
         $post->save();
