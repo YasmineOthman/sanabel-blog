@@ -70,7 +70,7 @@ class PostController extends Controller
         $post->tags()->sync($request->tags);
 
         // $post = Post::create($request->all());
-
+        Notification::send(User::all() , new PostPublished($post));
         return redirect()->route('posts.show', $post);
     }
 
