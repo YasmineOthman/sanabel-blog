@@ -23,7 +23,7 @@ Route::get('/', [PageController::class, 'home'])->name('home');
 Route::resource('posts', PostController::class);
 Route::resource('categories', CategoryController::class);
 Route::resource('tags', TagController::class);
-
+Route::get('/Posts_cat/{category}/posts',[PostController::class,'POSTS_UNDER_CATEGORY'])->name('posts_category');
 Route::view('/dashboard', 'dashboard')->middleware('auth')->name('dashboard');
 
 require __DIR__.'/auth.php';

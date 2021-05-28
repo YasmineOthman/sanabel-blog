@@ -89,6 +89,9 @@
           @enderror
         </div>
 <div class="field">
+ <figure class="image is-228x228 is-centered " >
+        <img src="{{ $post->featured_image }}">
+      </figure>
           <label class="label">Featured Image (upload)</label>
           <div class="file">
             <label class="file-label">

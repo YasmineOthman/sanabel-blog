@@ -3,7 +3,9 @@
     <div class="container">
       <div class="hero-body has-text-centered" style="height: 50%;">
         <p class="title">
-          Sanabel Blog
+          Sanabel Blog <br>
+        {{$title}}
+
         </p>
         <p class="subtitle">
           Welcome to our Blog, here you will learn about Laravel

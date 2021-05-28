@@ -19,8 +19,8 @@ class PostController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'show']);
-        $this->middleware('verified')->only('create');
+       // $this->middleware('auth')->except(['index', 'show']);
+      //  $this->middleware('verified')->only('create');
     }
 
     public function index()
@@ -118,7 +118,16 @@ class PostController extends Controller
 
         return redirect("/posts/{$post->id}");
     }
+    public function POSTS_UNDER_CATEGORY(Category $category)
+    {
+       // return $category;
+       $posts = $category->posts;
+       $posts = $category->posts()->paginate(2);
+       $title=$category->name;
+       return view('post.index',compact('posts','title'));
+      
 
+    }
     public function destory($id)
     {
         # code...
